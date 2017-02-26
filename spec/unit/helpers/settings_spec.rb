@@ -1,5 +1,5 @@
-require 'rails_helper'
-require 'active_admin/helpers/settings'
+require "rails_helper"
+require "active_admin/helpers/settings"
 
 RSpec.describe ActiveAdmin::Settings do
 

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 # TODO: refactor this file so it doesn't depend on the Admin namespace in such a broken way.
 #       Specifically, the dashboard is already defined.
@@ -16,15 +16,15 @@ RSpec.describe ActiveAdmin::Namespace, "registering a resource" do
     end
 
     it "should store the namespaced registered configuration" do
-      expect(namespace.resources.keys).to include('Category')
+      expect(namespace.resources.keys).to include("Category")
     end
 
     it "should create a new controller in the default namespace" do
-      expect(defined?(Admin::CategoriesController)).to eq 'constant'
+      expect(defined?(Admin::CategoriesController)).to eq "constant"
     end
 
     skip "should not create the dashboard controller" do
-      defined?(Admin::DashboardController).to_not eq 'constant'
+      defined?(Admin::DashboardController).to_not eq "constant"
     end
 
     it "should create a menu item" do
@@ -48,10 +48,10 @@ RSpec.describe ActiveAdmin::Namespace, "registering a resource" do
     end
 
     it "should store the namespaced registered configuration" do
-      expect(namespace.resources.keys).to include('Mock::Resource')
+      expect(namespace.resources.keys).to include("Mock::Resource")
     end
     it "should create a new controller in the default namespace" do
-      expect(defined?(Admin::MockResourcesController)).to eq 'constant'
+      expect(defined?(Admin::MockResourcesController)).to eq "constant"
     end
     it "should create a menu item" do
       expect(menu["Mock Resources"]).to be_an_instance_of(ActiveAdmin::MenuItem)
@@ -68,7 +68,7 @@ RSpec.describe ActiveAdmin::Namespace, "registering a resource" do
       expect(namespace.resource_for(Post)).to eq post
     end
 
-    it 'should return nil when the resource has not been registered' do
+    it "should return nil when the resource has not been registered" do
       expect(namespace.resource_for(Post)).to eq nil
     end
 
@@ -90,21 +90,21 @@ RSpec.describe ActiveAdmin::Namespace, "registering a resource" do
         namespace.register Category
       end
       it "should add a new menu item" do
-        expect(menu['Categories']).to_not eq nil
+        expect(menu["Categories"]).to_not eq nil
       end
     end # describe "adding as a top level item"
 
     describe "adding as a child" do
       before do
         namespace.register Category do
-          menu parent: 'Blog'
+          menu parent: "Blog"
         end
       end
       it "should generate the parent menu item" do
-        expect(menu['Blog']).to_not eq nil
+        expect(menu["Blog"]).to_not eq nil
       end
       it "should generate its own child item" do
-        expect(menu['Blog']['Categories']).to_not eq nil
+        expect(menu["Blog"]["Categories"]).to_not eq nil
       end
     end # describe "adding as a child"
 
@@ -148,14 +148,14 @@ RSpec.describe ActiveAdmin::Namespace, "registering a resource" do
       it "should be namespaced" do
         namespace = ActiveAdmin::Namespace.new(application, :one)
         namespace.register Category
-        expect(defined?(One::CategoriesController)).to eq 'constant'
+        expect(defined?(One::CategoriesController)).to eq "constant"
       end
     end
     context "when not namespaced" do
       it "should not be namespaced" do
         namespace = ActiveAdmin::Namespace.new(application, :two)
         namespace.register Category
-        expect(defined?(Two::CategoriesController)).to eq 'constant'
+        expect(defined?(Two::CategoriesController)).to eq "constant"
       end
     end
   end # describe "dashboard controller name"

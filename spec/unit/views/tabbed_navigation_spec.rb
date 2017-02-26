@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::Views::TabbedNavigation do
 
@@ -33,18 +33,18 @@ RSpec.describe ActiveAdmin::Views::TabbedNavigation do
 
       menu.add label: "Administration", url: "/admin/administration" do |administration|
         administration.add label: "User administration",
-                           url: '/admin/user-administration',
+                           url: "/admin/user-administration",
                            priority: 10,
                            if: proc { false }
       end
 
       menu.add label: "Management", url: "#" do |management|
         management.add label: "Order management",
-                       url: '/admin/order-management',
+                       url: "/admin/order-management",
                        priority: 10,
                        if: proc { false }
         management.add label: "Bill management",
-                       url: '/admin/bill-management',
+                       url: "/admin/bill-management",
                        priority: 10,
                        if: :admin_logged_in?
       end

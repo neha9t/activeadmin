@@ -1,23 +1,23 @@
-require 'spec_helper'
+require "spec_helper"
 
-ENV['RAILS_ENV'] = 'test'
+ENV["RAILS_ENV"] = "test"
 
-require 'rails'
-ENV['RAILS_ROOT'] = File.expand_path("../rails/rails-#{Rails.version}", __FILE__)
+require "rails"
+ENV["RAILS_ROOT"] = File.expand_path("../rails/rails-#{Rails.version}", __FILE__)
 
 # Create the test app if it doesn't exists
-unless File.exists?(ENV['RAILS_ROOT'])
-  system 'rake setup'
+unless File.exists?(ENV["RAILS_ROOT"])
+  system "rake setup"
 end
 
-require 'active_record'
-require 'active_admin'
-require 'devise'
-ActiveAdmin.application.load_paths = [ENV['RAILS_ROOT'] + "/app/admin"]
+require "active_record"
+require "active_admin"
+require "devise"
+ActiveAdmin.application.load_paths = [ENV["RAILS_ROOT"] + "/app/admin"]
 
-require ENV['RAILS_ROOT'] + '/config/environment'
+require ENV["RAILS_ROOT"] + "/config/environment"
 
-require 'rspec/rails'
+require "rspec/rails"
 
 # Prevent Test::Unit's AutoRunner from executing during RSpec's rake task on
 # JRuby
@@ -39,13 +39,13 @@ RSpec.configure do |config|
   config.color = true
   config.order = :random
 
-  devise = ActiveAdmin::Dependency.devise >= '4.2' ? Devise::Test::ControllerHelpers : Devise::TestHelpers
+  devise = ActiveAdmin::Dependency.devise >= "4.2" ? Devise::Test::ControllerHelpers : Devise::TestHelpers
   config.include devise, type: :controller
 
-  require 'support/active_admin_integration_spec_helper'
+  require "support/active_admin_integration_spec_helper"
   config.include ActiveAdminIntegrationSpecHelper
 
-  require 'support/active_admin_request_helpers'
+  require "support/active_admin_request_helpers"
   config.include ActiveAdminRequestHelpers, type: :request
 
   # Setup Some Admin stuff for us to play with
@@ -68,8 +68,8 @@ end
 Rails.logger.level = Logger::FATAL
 
 # Improves performance by forcing the garbage collector to run less often.
-unless ENV['DEFER_GC'] == '0' || ENV['DEFER_GC'] == 'false'
-  require 'support/deferred_garbage_collection'
+unless ENV["DEFER_GC"] == "0" || ENV["DEFER_GC"] == "false"
+  require "support/deferred_garbage_collection"
   RSpec.configure do |config|
     config.before(:all) { DeferredGarbageCollection.start }
     config.after(:all)  { DeferredGarbageCollection.reconsider }

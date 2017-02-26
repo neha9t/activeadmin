@@ -23,7 +23,7 @@ module ActiveAdmin
 
     def cancel_link(url = {action: "index"}, html_options = {}, li_attrs = {})
       li_attrs[:class] ||= "cancel"
-      li_content = template.link_to I18n.t('active_admin.cancel'), url, html_options
+      li_content = template.link_to I18n.t("active_admin.cancel"), url, html_options
       template.content_tag(:li, li_content, li_attrs)
     end
 
@@ -39,7 +39,7 @@ module ActiveAdmin
       custom_settings = :new_record, :allow_destroy, :heading, :sortable, :sortable_start
       builder_options = {new_record: true}.merge! options.slice  *custom_settings
       options         = {for: assoc      }.merge! options.except *custom_settings
-      options[:class] = [options[:class], "inputs has_many_fields"].compact.join(' ')
+      options[:class] = [options[:class], "inputs has_many_fields"].compact.join(" ")
       sortable_column = builder_options[:sortable]
       sortable_start  = builder_options.fetch(:sortable_start, 0)
 
@@ -75,7 +75,7 @@ module ActiveAdmin
       end
 
       tag = @already_in_an_inputs_block ? :li : :div
-      html = template.content_tag(tag, html, class: "has_many_container #{assoc}", 'data-sortable' => sortable_column, 'data-sortable-start' => sortable_start)
+      html = template.content_tag(tag, html, class: "has_many_container #{assoc}", "data-sortable" => sortable_column, "data-sortable-start" => sortable_start)
       template.concat(html) if template.output_buffer
       html
     end
@@ -85,21 +85,21 @@ module ActiveAdmin
     def has_many_actions(has_many_form, builder_options, contents)
       if has_many_form.object.new_record?
         contents << template.content_tag(:li) do
-          template.link_to I18n.t('active_admin.has_many_remove'), "#", class: 'button has_many_remove'
+          template.link_to I18n.t("active_admin.has_many_remove"), "#", class: "button has_many_remove"
         end
       elsif call_method_or_proc_on(has_many_form.object,
                                    builder_options[:allow_destroy],
                                    exec: false)
 
         has_many_form.input(:_destroy, as: :boolean,
-                            wrapper_html: {class: 'has_many_delete'},
-                            label: I18n.t('active_admin.has_many_delete'))
+                            wrapper_html: {class: "has_many_delete"},
+                            label: I18n.t("active_admin.has_many_delete"))
       end
 
       if builder_options[:sortable]
         has_many_form.input builder_options[:sortable], as: :hidden
 
-        contents << template.content_tag(:li, class: 'handle') do
+        contents << template.content_tag(:li, class: "handle") do
           "MOVE"
         end
       end
@@ -137,9 +137,9 @@ module ActiveAdmin
         for_options: { child_index: placeholder }
       }
       html = template.capture{ inputs_for_nested_attributes opts, &form_block }
-      text = new_record.is_a?(String) ? new_record : I18n.t('active_admin.has_many_new', model: assoc_name.human)
+      text = new_record.is_a?(String) ? new_record : I18n.t("active_admin.has_many_new", model: assoc_name.human)
 
-      template.link_to text, '#', class: "button has_many_add", data: {
+      template.link_to text, "#", class: "button has_many_add", data: {
         html: CGI.escapeHTML(html).html_safe, placeholder: placeholder
       }
     end

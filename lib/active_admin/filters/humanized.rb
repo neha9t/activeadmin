@@ -10,7 +10,7 @@ module ActiveAdmin
       end
 
       def value
-        @value.is_a?(::Array) ? @value.compact.join(', ') : @value
+        @value.is_a?(::Array) ? @value.compact.join(", ") : @value
       end
 
       def body
@@ -36,10 +36,10 @@ module ActiveAdmin
 
         @body.split(split_string)
           .first
-          .gsub('_', ' ')
+          .gsub("_", " ")
           .strip
           .titleize
-          .gsub('Id', 'ID')
+          .gsub("Id", "ID")
       end
 
       def current_predicate
@@ -59,7 +59,7 @@ module ActiveAdmin
       end
 
       def translation_missing?(predicate)
-        predicate.downcase.include?('translation missing')
+        predicate.downcase.include?("translation missing")
       end
 
     end

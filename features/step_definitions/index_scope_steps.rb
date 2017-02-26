@@ -6,11 +6,11 @@ end
 
 Then /^I should see the scope "([^"]*)" not selected$/ do |name|
   step %{I should see the scope "#{name}"}
-  expect(page).to_not have_css '.scopes .selected', text: name
+  expect(page).to_not have_css ".scopes .selected", text: name
 end
 
 Then /^I should see the scope "([^"]*)" with the count (\d+)$/ do |name, count|
-  name = name.tr(' ','').underscore.downcase
+  name = name.tr(" ","").underscore.downcase
   step %{I should see "#{count}" within ".scopes .#{name} .count"}
 end
 

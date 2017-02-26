@@ -1,6 +1,6 @@
-require 'active_admin/router'
-require 'active_admin/reloader'
-require 'active_admin/helpers/settings'
+require "active_admin/router"
+require "active_admin/reloader"
+require "active_admin/helpers/settings"
 
 module ActiveAdmin
   class Application
@@ -24,7 +24,7 @@ module ActiveAdmin
     # Load paths for admin configurations. Add folders to this load path
     # to load up other resources for administration. External gems can
     # include their paths in this load path to provide active_admin UIs
-    setting :load_paths, [File.expand_path('app/admin', Rails.root)]
+    setting :load_paths, [File.expand_path("app/admin", Rails.root)]
 
     # The default number of resources to display on index pages
     inheritable_setting :default_per_page, 30
@@ -78,7 +78,7 @@ module ActiveAdmin
     inheritable_setting :filters, true
 
     # The namespace root.
-    inheritable_setting :root_to, 'dashboard#index'
+    inheritable_setting :root_to, "dashboard#index"
 
     # Options that a passed to root_to.
     inheritable_setting :root_to_options, {}
@@ -90,7 +90,7 @@ module ActiveAdmin
     inheritable_setting :breadcrumb, true
 
     # Default CSV options
-    inheritable_setting :csv_options, { col_sep: ',', byte_order_mark: "\xEF\xBB\xBF" }
+    inheritable_setting :csv_options, { col_sep: ",", byte_order_mark: "\xEF\xBB\xBF" }
 
     # Default Download Links options
     inheritable_setting :download_links, true
@@ -116,7 +116,7 @@ module ActiveAdmin
     ]
 
     # Set flash message keys that shouldn't show in ActiveAdmin
-    inheritable_setting :flash_keys_to_except, ['timedout']
+    inheritable_setting :flash_keys_to_except, ["timedout"]
 
     # Set default localize format for Date/Time values
     setting :localize_format, :long
@@ -138,7 +138,7 @@ module ActiveAdmin
                                       :to_s ]
 
     # To make debugging easier, by default don't stream in development
-    setting :disable_streaming_in, ['development']
+    setting :disable_streaming_in, ["development"]
 
     # == Deprecated Settings
 
@@ -149,8 +149,8 @@ module ActiveAdmin
     include AssetRegistration
 
     # Event that gets triggered on load of Active Admin
-    BeforeLoadEvent = 'active_admin.application.before_load'.freeze
-    AfterLoadEvent  = 'active_admin.application.after_load'.freeze
+    BeforeLoadEvent = "active_admin.application.before_load".freeze
+    AfterLoadEvent  = "active_admin.application.after_load".freeze
 
     # Runs before the app's AA initializer
     def setup!
@@ -264,10 +264,10 @@ module ActiveAdmin
   private
 
     def register_default_assets
-      register_stylesheet 'active_admin.css',       media: 'screen'
-      register_stylesheet 'active_admin/print.css', media: 'print'
+      register_stylesheet "active_admin.css",       media: "screen"
+      register_stylesheet "active_admin/print.css", media: "print"
 
-      register_javascript 'active_admin.js'
+      register_javascript "active_admin.js"
     end
 
     # Since app/admin is alphabetically before app/models, we have to remove it

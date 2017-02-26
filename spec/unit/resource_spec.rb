@@ -1,5 +1,5 @@
-require 'rails_helper'
-require File.expand_path('config_shared_examples', File.dirname(__FILE__))
+require "rails_helper"
+require File.expand_path("config_shared_examples", File.dirname(__FILE__))
 
 module ActiveAdmin
   RSpec.describe Resource do
@@ -33,17 +33,17 @@ module ActiveAdmin
       end
     end
 
-    describe '#decorator_class' do
-      it 'returns nil by default' do
+    describe "#decorator_class" do
+      it "returns nil by default" do
         expect(config.decorator_class).to eq nil
       end
-      context 'when a decorator is defined' do
+      context "when a decorator is defined" do
         let(:resource) { namespace.register(Post) { decorate_with PostDecorator } }
-        specify '#decorator_class_name should return PostDecorator' do
-          expect(resource.decorator_class_name).to eq '::PostDecorator'
+        specify "#decorator_class_name should return PostDecorator" do
+          expect(resource.decorator_class_name).to eq "::PostDecorator"
         end
 
-        it 'returns the decorator class' do
+        it "returns the decorator class" do
           expect(resource.decorator_class).to eq PostDecorator
         end
       end
@@ -230,7 +230,7 @@ module ActiveAdmin
       end
     end
 
-    describe '#find_resource' do
+    describe "#find_resource" do
       let(:resource) { namespace.register(Post) }
       let(:post) { double }
       before do
@@ -243,25 +243,25 @@ module ActiveAdmin
         end
       end
 
-      it 'can find the resource' do
-        expect(resource.find_resource('12345')).to eq post
+      it "can find the resource" do
+        expect(resource.find_resource("12345")).to eq post
       end
 
-      context 'with a decorator' do
+      context "with a decorator" do
         let(:resource) { namespace.register(Post) { decorate_with PostDecorator } }
-        it 'decorates the resource' do
-          expect(resource.find_resource('12345')).to eq PostDecorator.new(post)
+        it "decorates the resource" do
+          expect(resource.find_resource("12345")).to eq PostDecorator.new(post)
         end
 
-        it 'does not decorate a not found resource' do
-          expect(resource.find_resource('54321')).to equal nil
+        it "does not decorate a not found resource" do
+          expect(resource.find_resource("54321")).to equal nil
         end
       end
 
-      context 'when using a nonstandard primary key' do
+      context "when using a nonstandard primary key" do
         let(:different_post) { double }
         before do
-          allow(Post).to receive(:primary_key).and_return 'something_else'
+          allow(Post).to receive(:primary_key).and_return "something_else"
           if Rails::VERSION::MAJOR >= 4
             allow(Post).to receive(:find_by).
               with("something_else" => "55555") { different_post }
@@ -271,12 +271,12 @@ module ActiveAdmin
           end
         end
 
-        it 'can find the post by the custom primary key' do
-          expect(resource.find_resource('55555')).to eq different_post
+        it "can find the post by the custom primary key" do
+          expect(resource.find_resource("55555")).to eq different_post
         end
       end
 
-      context 'when using controller finder' do
+      context "when using controller finder" do
         let(:resource) do
           namespace.register(Post) do
             controller do
@@ -285,10 +285,10 @@ module ActiveAdmin
           end
         end
 
-        it 'can find the post by controller finder' do
-          allow(Post).to receive(:find_by_title!).with('title-name').and_return(post)
+        it "can find the post by controller finder" do
+          allow(Post).to receive(:find_by_title!).with("title-name").and_return(post)
 
-          expect(resource.find_resource('title-name')).to eq post
+          expect(resource.find_resource("title-name")).to eq post
         end
       end
     end
@@ -315,7 +315,7 @@ module ActiveAdmin
         ].each do |method|
           it "delegates #{method}" do
             expected = method.to_s.dup
-            expected.sub! 'filter', 'action' if ActiveAdmin::Dependency.rails >= 4
+            expected.sub! "filter", "action" if ActiveAdmin::Dependency.rails >= 4
             expect(resource.send(method)).to eq "called #{expected}"
           end
         end

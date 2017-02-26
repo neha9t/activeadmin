@@ -1,8 +1,8 @@
-require 'rails_helper'
-require 'active_admin/view_helpers/active_admin_application_helper'
-require 'active_admin/view_helpers/auto_link_helper'
-require 'active_admin/view_helpers/display_helper'
-require 'active_admin/view_helpers/method_or_proc_helper'
+require "rails_helper"
+require "active_admin/view_helpers/active_admin_application_helper"
+require "active_admin/view_helpers/auto_link_helper"
+require "active_admin/view_helpers/display_helper"
+require "active_admin/view_helpers/method_or_proc_helper"
 
 RSpec.describe "auto linking resources", type: :view do
   include ActiveAdmin::ViewHelpers::ActiveAdminApplicationHelper
@@ -40,7 +40,7 @@ RSpec.describe "auto linking resources", type: :view do
     end
 
     it "should keep locale in the url if present" do
-      expect(self).to receive(:url_options).and_return(locale: 'en')
+      expect(self).to receive(:url_options).and_return(locale: "en")
 
       expect(auto_link(post)).to \
           match(%r{<a href="/admin/posts/\d+\?locale=en">Hello World</a>})
@@ -70,7 +70,7 @@ RSpec.describe "auto linking resources", type: :view do
     end
 
     it "should keep locale in the url if present" do
-      expect(self).to receive(:url_options).and_return(locale: 'en')
+      expect(self).to receive(:url_options).and_return(locale: "en")
 
       expect(auto_link(post)).to \
         match(%r{<a href="/admin/posts/\d+/edit\?locale=en">Hello World</a>})

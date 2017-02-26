@@ -6,13 +6,13 @@ module NavigationHelpers
   # step definition in web_steps.rb
   #
   def path_to(page_name)
-    params = page_name.scan(/with params "(.*?)"/).flatten[0] || ''
-    page_name.sub! /\ with params.*/, ''
+    params = page_name.scan(/with params "(.*?)"/).flatten[0] || ""
+    page_name.sub! /\ with params.*/, ""
 
     url = case page_name
 
     when /the home\s?page/
-      '/'
+      "/"
     when /the dashboard/
       "/admin"
     when /the new post page/
@@ -31,7 +31,7 @@ module NavigationHelpers
     # the index page for posts in the root namespace
     # the index page for posts in the user_admin namespace
     when /^the index page for (.*) in the (.*) namespace$/
-      if $2 != 'root'
+      if $2 != "root"
         send "#{$2}_#{$1}_path"
       else
         send "#{$1}_path"
@@ -63,7 +63,7 @@ module NavigationHelpers
       begin
         page_name =~ /the (.*) page/
         path_components = $1.split(/\s+/)
-        self.send path_components.push('path').join('_')
+        self.send path_components.push("path").join("_")
       rescue Object => e
         raise "Can't find mapping from \"#{page_name}\" to a path.\n" +
           "Now, go and add a mapping in #{__FILE__}"

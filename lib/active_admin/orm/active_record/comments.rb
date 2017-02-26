@@ -1,11 +1,11 @@
-require 'active_admin/orm/active_record/comments/views'
-require 'active_admin/orm/active_record/comments/show_page_helper'
-require 'active_admin/orm/active_record/comments/namespace_helper'
-require 'active_admin/orm/active_record/comments/resource_helper'
+require "active_admin/orm/active_record/comments/views"
+require "active_admin/orm/active_record/comments/show_page_helper"
+require "active_admin/orm/active_record/comments/namespace_helper"
+require "active_admin/orm/active_record/comments/resource_helper"
 
 # Add the comments configuration
 ActiveAdmin::Application.inheritable_setting :comments,                   true
-ActiveAdmin::Application.inheritable_setting :comments_registration_name, 'Comment'
+ActiveAdmin::Application.inheritable_setting :comments_registration_name, "Comment"
 ActiveAdmin::Application.inheritable_setting :comments_order,             "created_at ASC"
 ActiveAdmin::Application.inheritable_setting :comments_menu,              {}
 
@@ -15,7 +15,7 @@ ActiveAdmin::Resource.send  :include, ActiveAdmin::Comments::ResourceHelper
 ActiveAdmin.application.view_factory.show_page.send :include, ActiveAdmin::Comments::ShowPageHelper
 
 # Load the model as soon as it's referenced. By that point, Rails & Kaminari will be ready
-ActiveAdmin.autoload :Comment, 'active_admin/orm/active_record/comments/comment'
+ActiveAdmin.autoload :Comment, "active_admin/orm/active_record/comments/comment"
 
 # Walk through all the loaded namespaces after they're loaded
 ActiveAdmin.after_load do |app|
@@ -47,7 +47,7 @@ ActiveAdmin.after_load do |app|
         # Prevent N+1 queries
         def scoped_collection
           super.includes *( # rails/rails#14734
-            ActiveAdmin::Dependency.rails?('>= 4.1.0', '<= 4.1.1') ?
+            ActiveAdmin::Dependency.rails?(">= 4.1.0", "<= 4.1.1") ?
               [:author] : [:author, :resource]
           )
         end
@@ -59,7 +59,7 @@ ActiveAdmin.after_load do |app|
               ActiveAdmin::Dependency.rails.redirect_back self, active_admin_root
             end
             failure.html do
-              flash[:error] = I18n.t 'active_admin.comments.errors.empty_text'
+              flash[:error] = I18n.t "active_admin.comments.errors.empty_text"
               ActiveAdmin::Dependency.rails.redirect_back self, active_admin_root
             end
           end
@@ -82,12 +82,12 @@ ActiveAdmin.after_load do |app|
       end
 
       index do
-        column I18n.t('active_admin.comments.resource_type'), :resource_type
-        column I18n.t('active_admin.comments.author_type'),   :author_type
-        column I18n.t('active_admin.comments.resource'),      :resource
-        column I18n.t('active_admin.comments.author'),        :author
-        column I18n.t('active_admin.comments.body'),          :body
-        column I18n.t('active_admin.comments.created_at'),    :created_at
+        column I18n.t("active_admin.comments.resource_type"), :resource_type
+        column I18n.t("active_admin.comments.author_type"),   :author_type
+        column I18n.t("active_admin.comments.resource"),      :resource
+        column I18n.t("active_admin.comments.author"),        :author
+        column I18n.t("active_admin.comments.body"),          :body
+        column I18n.t("active_admin.comments.created_at"),    :created_at
         actions
       end
     end

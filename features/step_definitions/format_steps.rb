@@ -1,4 +1,4 @@
-require 'csv'
+require "csv"
 
 Then "I should see nicely formatted datetimes" do
   expect(page.body).to match /\w+ \d{1,2}, \d{4} \d{2}:\d{2}/
@@ -15,7 +15,7 @@ Then /^I should download a CSV file with "([^"]*)" separator for "([^"]*)" conta
   content_type_header, content_disposition_header = %w[Content-Type Content-Disposition].map do |header_name|
     page.response_headers[header_name]
   end
-  expect(content_type_header).to eq 'text/csv; charset=utf-8'
+  expect(content_type_header).to eq "text/csv; charset=utf-8"
   expect(content_disposition_header).to match /\Aattachment; filename=".+?\.csv"\z/
 
   begin
@@ -26,7 +26,7 @@ Then /^I should download a CSV file with "([^"]*)" separator for "([^"]*)" conta
         if expected_cell.blank?
           expect(cell).to eq nil
         else
-          expect(cell || '').to match /#{expected_cell}/
+          expect(cell || "").to match /#{expected_cell}/
         end
       end
     end

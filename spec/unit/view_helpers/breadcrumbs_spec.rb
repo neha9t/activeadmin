@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Breadcrumbs" do
 
@@ -11,11 +11,11 @@ RSpec.describe "Breadcrumbs" do
 
     actions = ActiveAdmin::BaseController::ACTIVE_ADMIN_ACTIONS
 
-    let(:user)        { double display_name: 'Jane Doe' }
-    let(:user_config) { double find_resource: user, resource_name: double(route_key: 'users'),
+    let(:user)        { double display_name: "Jane Doe" }
+    let(:user_config) { double find_resource: user, resource_name: double(route_key: "users"),
                                defined_actions: actions }
-    let(:post)        { double display_name: 'Hello World' }
-    let(:post_config) { double find_resource: post, resource_name: double(route_key: 'posts'),
+    let(:post)        { double display_name: "Hello World" }
+    let(:post_config) { double find_resource: post, resource_name: double(route_key: "posts"),
                                defined_actions: actions, belongs_to_config: double(target: user_config) }
 
     let :active_admin_config do
@@ -33,14 +33,14 @@ RSpec.describe "Breadcrumbs" do
     end
 
     context "when path 'admin/users'" do
-      let(:path) { 'admin/users' }
+      let(:path) { "admin/users" }
 
-      it 'should have one item' do
+      it "should have one item" do
         expect(trail.size).to eq 1
       end
-      it 'should have a link to /admin' do
-        expect(trail[0][:name]).to eq 'Admin'
-        expect(trail[0][:path]).to eq '/admin'
+      it "should have a link to /admin" do
+        expect(trail[0][:name]).to eq "Admin"
+        expect(trail[0][:path]).to eq "/admin"
       end
     end
 
@@ -128,7 +128,7 @@ RSpec.describe "Breadcrumbs" do
 
       context "when User.find(4e24d6249ccf967313000000) does exist" do
         before do
-          display_name = double(display_name: 'Hello :)')
+          display_name = double(display_name: "Hello :)")
           allow(user_config).to receive(:find_resource).and_return(display_name)
         end
         it "should have a link to /admin/users/4e24d6249ccf967313000000 using display name" do
@@ -191,7 +191,7 @@ RSpec.describe "Breadcrumbs" do
     end
 
     context "when the 'show' action is disabled" do
-      let(:post_config) { double find_resource: post, resource_name: double(route_key: 'posts'),
+      let(:post_config) { double find_resource: post, resource_name: double(route_key: "posts"),
                                  defined_actions: actions - [:show], # this is the change
                                  belongs_to_config: double(target: user_config) }
 

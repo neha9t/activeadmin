@@ -1,7 +1,7 @@
 module ActiveAdmin
   module Dependency
     module Requirements
-      DEVISE = '>= 3.2', '< 5'
+      DEVISE = ">= 3.2", "< 5"
     end
 
     # Provides a clean interface to check for gem dependencies at runtime.
@@ -42,9 +42,9 @@ module ActiveAdmin
     # => false
     #
     def self.method_missing(name, *args)
-      if name[-1] == '?'
+      if name[-1] == "?"
         Matcher.new(name[0..-2]).match? args
-      elsif name[-1] == '!'
+      elsif name[-1] == "!"
         Matcher.new(name[0..-2]).match! args
       else
         Matcher.new name.to_s
@@ -56,7 +56,7 @@ module ActiveAdmin
     end
 
     def self.rails5?
-      rails >= '5.x'
+      rails >= "5.x"
     end
 
     class Matcher
@@ -91,7 +91,7 @@ module ActiveAdmin
       end
 
       def inspect
-        info = spec ? "#{spec.name} #{spec.version}" : '(missing)'
+        info = spec ? "#{spec.name} #{spec.version}" : "(missing)"
         "<ActiveAdmin::Dependency::Matcher for #{info}>"
       end
 
@@ -140,9 +140,9 @@ module ActiveAdmin
 
         def parameterize(string)
           if Dependency.rails5?
-            string.parameterize separator: '_'
+            string.parameterize separator: "_"
           else
-            string.parameterize '_'
+            string.parameterize "_"
           end
         end
 
@@ -150,7 +150,7 @@ module ActiveAdmin
           controller.instance_exec do
             if Dependency.rails5?
               redirect_back fallback_location: fallback_location
-            elsif controller.request.headers.key? 'HTTP_REFERER'
+            elsif controller.request.headers.key? "HTTP_REFERER"
               redirect_to :back
             else
               redirect_to fallback_location

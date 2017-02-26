@@ -9,8 +9,8 @@ module ActiveAdmin
       end
     end
 
-    initializer 'active_admin.routes' do
-      require 'active_admin/helpers/routes/url_helpers'
+    initializer "active_admin.routes" do
+      require "active_admin/helpers/routes/url_helpers"
     end
   end
 end

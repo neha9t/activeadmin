@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 
 module MockModuleToInclude
@@ -25,7 +25,7 @@ RSpec.describe ActiveAdmin::DSL do
   end
 
 
-  describe '#action_item' do
+  describe "#action_item" do
     before do
       @default_items_count = resource_config.action_items.size
 
@@ -40,7 +40,7 @@ RSpec.describe ActiveAdmin::DSL do
       expect(resource_config.action_items.size).to eq(@default_items_count + 1)
     end
 
-    context 'DEPRECATED: when used without a name' do
+    context "DEPRECATED: when used without a name" do
       it "is configured for only the show action" do
         expect(ActiveAdmin::Deprecation).to receive(:warn).with(instance_of(String))
 
@@ -97,7 +97,7 @@ RSpec.describe ActiveAdmin::DSL do
       dsl.run_registration_block do
         sidebar :help
       end
-      expect(dsl.config.sidebar_sections.map(&:name)).to match_array ['filters', 'Search status:', 'email', 'help']
+      expect(dsl.config.sidebar_sections.map(&:name)).to match_array ["filters", "Search status:", "email", "help"]
     end
 
   end

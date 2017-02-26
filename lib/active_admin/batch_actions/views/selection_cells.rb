@@ -1,4 +1,4 @@
-require 'active_admin/component'
+require "active_admin/component"
 
 module ActiveAdmin
   module BatchActions
@@ -28,7 +28,7 @@ module ActiveAdmin
       def build
         super(id: "collection_selection_toggle_panel")
         resource_selection_toggle_cell
-        div(id: "collection_selection_toggle_explaination" ) { I18n.t('active_admin.batch_actions.selection_toggle_explanation', default: "(Toggle Selection)") }
+        div(id: "collection_selection_toggle_explaination" ) { I18n.t("active_admin.batch_actions.selection_toggle_explanation", default: "(Toggle Selection)") }
       end
 
     end

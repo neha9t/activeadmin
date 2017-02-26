@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::Filters::ViewHelper do
 
@@ -53,7 +53,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     describe "label as proc" do
-      let(:body) { Capybara.string(filter :title, label: proc { 'Title from proc' }) }
+      let(:body) { Capybara.string(filter :title, label: proc { "Title from proc" }) }
 
       it "should render proper label" do
         expect(body).to have_selector("label", text: "Title from proc")
@@ -85,7 +85,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     it "should translate the label for text field" do
-      with_translation activerecord: {attributes: {post: {title: 'Name'}}} do
+      with_translation activerecord: {attributes: {post: {title: "Name"}}} do
         expect(body).to have_selector("label", text: "Name")
       end
     end
@@ -149,9 +149,9 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       end
 
       it "should remove original ordering to prevent PostgreSQL error" do
-        expect(scope.object.klass).to receive(:reorder).with('title asc') {
+        expect(scope.object.klass).to receive(:reorder).with("title asc") {
           distinct = ActiveAdmin::Dependency.rails >= 4 ? :distinct : :uniq
-          m = double distinct => double(pluck: ['A Title'])
+          m = double distinct => double(pluck: ["A Title"])
           expect(m.send(distinct)).to receive(:pluck).with :title
           m
         }
@@ -241,7 +241,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
       end
 
       it "should translate the label for boolean field" do
-        with_translation activerecord: {attributes: {post: {starred: 'Faved'}}} do
+        with_translation activerecord: {attributes: {post: {starred: "Faved"}}} do
           expect(body).to have_selector("label", text: "Faved")
         end
       end
@@ -295,7 +295,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
 
       context "with a proc" do
         let :body do
-          Capybara.string(filter :title, as: :select, collection: proc{ ['Title One', 'Title Two'] })
+          Capybara.string(filter :title, as: :select, collection: proc{ ["Title One", "Title Two"] })
         end
 
         it "should use call the proc as the collection" do
@@ -433,7 +433,7 @@ RSpec.describe ActiveAdmin::Filters::ViewHelper do
     end
 
     it "should work as select" do
-      body = Capybara.string(filter :custom_title_searcher, as: :select, collection: ['foo'])
+      body = Capybara.string(filter :custom_title_searcher, as: :select, collection: ["foo"])
       expect(body).to have_selector("select[name='q[custom_title_searcher_eq]']")
     end
 

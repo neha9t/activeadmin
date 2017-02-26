@@ -1,4 +1,4 @@
-require 'uri'
+require "uri"
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "selectors"))
 
@@ -64,7 +64,7 @@ end
 Then /^the "([^"]*)" field(?: within (.*))? should( not)? contain "([^"]*)"$/ do |field, parent, negate, value|
   with_scope(parent) do
     field = find_field(field)
-    value = field.tag_name == 'textarea' ? field.text : field.value
+    value = field.tag_name == "textarea" ? field.text : field.value
 
     expect(value).send negate ? :not_to : :to, match(/#{value}/)
   end
@@ -72,7 +72,7 @@ end
 
 Then /^the "([^"]*)" checkbox(?: within (.*))? should( not)? be checked$/ do |label, parent, negate|
   with_scope(parent) do
-    expect(find_field(label)['checked']).to negate ? eq(false) : eq(true)
+    expect(find_field(label)["checked"]).to negate ? eq(false) : eq(true)
   end
 end
 

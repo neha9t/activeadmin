@@ -30,14 +30,14 @@ module ActiveAdminContentsRollback
   # Else, remove the file and its parent folder structure until Rails.root OR other files exist.
   def rollback_file(file, contents)
     if contents.present?
-      File.open(file,'w') { |f| f << contents }
+      File.open(file,"w") { |f| f << contents }
     else
       File.delete(file)
       begin
         dir = File.dirname(file)
         until dir == Rails.root
           Dir.rmdir(dir)                        # delete current folder
-          dir = dir.split('/')[0..-2].join('/') # select parent folder
+          dir = dir.split("/")[0..-2].join("/") # select parent folder
         end
       rescue Errno::ENOTEMPTY # Directory not empty
       end
@@ -56,24 +56,24 @@ Given /^a(?:n? (index|show))? configuration of:$/ do |action, config_content|
   load_aa_config(config_content)
 
   case action
-  when 'index'
-    step 'I am logged in'
+  when "index"
+    step "I am logged in"
     case resource = config_content.match(/ActiveAdmin\.register (\w+)/)[1]
-    when 'Post'
-      step 'I am on the index page for posts'
-    when 'Category'
-      step 'I am on the index page for categories'
+    when "Post"
+      step "I am on the index page for posts"
+    when "Category"
+      step "I am on the index page for categories"
     else
       raise "#{resource} is not supported"
     end
-  when 'show'
+  when "show"
     case resource = config_content.match(/ActiveAdmin\.register (\w+)/)[1]
-    when 'Post'
-      step 'I am logged in'
-      step 'I am on the index page for posts'
+    when "Post"
+      step "I am logged in"
+      step "I am on the index page for posts"
       step 'I follow "View"'
-    when 'Tag'
-      step 'I am logged in'
+    when "Tag"
+      step "I am logged in"
       Tag.create!
       visit admin_tag_path Tag.last
     else
@@ -87,7 +87,7 @@ Given /^"([^"]*)" contains:$/ do |filename, contents|
   FileUtils.mkdir_p File.dirname path
   record path
 
-  File.open(path,'w+'){ |f| f << contents }
+  File.open(path,"w+"){ |f| f << contents }
 end
 
 Given /^I add "([^"]*)" to the "([^"]*)" model$/ do |code, model_name|
@@ -95,6 +95,6 @@ Given /^I add "([^"]*)" to the "([^"]*)" model$/ do |code, model_name|
   record path
 
   str = File.read(path).gsub /^(class .+)$/, "\\1\n  #{code}\n"
-  File.open(path, 'w+') { |f| f << str }
+  File.open(path, "w+") { |f| f << str }
   ActiveSupport::Dependencies.clear
 end

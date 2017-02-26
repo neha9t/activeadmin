@@ -1,17 +1,17 @@
-require 'rails_helper'
-require 'fileutils'
+require "rails_helper"
+require "fileutils"
 
 RSpec.describe ActiveAdmin::Application do
 
   let(:application) do
     ActiveAdmin::Application.new.tap do |app|
       # Manually override the load paths becuase RSpec messes these up
-      app.load_paths = [File.expand_path('app/admin', Rails.root)]
+      app.load_paths = [File.expand_path("app/admin", Rails.root)]
     end
   end
 
   it "should have a default load path of ['app/admin']" do
-    expect(application.load_paths).to eq [File.expand_path('app/admin', Rails.root)]
+    expect(application.load_paths).to eq [File.expand_path("app/admin", Rails.root)]
   end
 
   it "should remove app/admin from the autoload paths (Active Admin deals with loading)" do

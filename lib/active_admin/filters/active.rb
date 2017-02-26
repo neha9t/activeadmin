@@ -1,4 +1,4 @@
-require 'active_admin/filters/humanized'
+require "active_admin/filters/humanized"
 
 module ActiveAdmin
   module Filters
@@ -29,7 +29,7 @@ module ActiveAdmin
       end
 
       def humanize_scope
-        scope = @params['scope']
+        scope = @params["scope"]
         scope ? scope.humanize : "All"
       end
     end

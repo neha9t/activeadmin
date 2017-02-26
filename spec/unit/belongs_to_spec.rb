@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::Resource::BelongsTo do
   before do
@@ -59,14 +59,14 @@ RSpec.describe ActiveAdmin::Resource::BelongsTo do
     let(:controller) { post_config.controller.new }
     before do
       user = User.create!
-      request = double 'Request', format: 'application/json'
+      request = double "Request", format: "application/json"
       allow(controller).to receive(:params) { {user_id: user.id} }
       allow(controller).to receive(:request){ request }
     end
-    it 'should be able to access the collection' do
+    it "should be able to access the collection" do
       expect(controller.send :collection).to be_a ActiveRecord::Relation
     end
-    it 'should be able to build a new resource' do
+    it "should be able to build a new resource" do
       expect(controller.send :build_resource).to be_a Post
     end
   end

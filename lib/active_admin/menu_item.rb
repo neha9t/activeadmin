@@ -1,4 +1,4 @@
-require 'active_admin/view_helpers/method_or_proc_helper'
+require "active_admin/view_helpers/method_or_proc_helper"
 
 module ActiveAdmin
   class MenuItem
@@ -50,7 +50,7 @@ module ActiveAdmin
       super() # MenuNode
       @label          = options[:label]
       @dirty_id       = options[:id]           || options[:label]
-      @url            = options[:url]          || '#'
+      @url            = options[:url]          || "#"
       @priority       = options[:priority]     || 10
       @html_options   = options[:html_options] || {}
       @should_display = options[:if]           || proc{true}
@@ -90,7 +90,7 @@ module ActiveAdmin
     # URL is not nil, empty, or '#'
     def real_url?(context = nil)
       url = url context
-      url.present? && url != '#'
+      url.present? && url != "#"
     end
 
   end

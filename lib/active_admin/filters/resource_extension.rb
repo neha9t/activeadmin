@@ -1,4 +1,4 @@
-require 'active_admin/filters/active'
+require "active_admin/filters/active"
 
 module ActiveAdmin
   module Filters
@@ -165,11 +165,11 @@ module ActiveAdmin
           active = ActiveAdmin::Filters::Active.new(resource_class, params)
 
           span do
-            h4 I18n.t("active_admin.search_status.current_scope"), style: 'display: inline'
+            h4 I18n.t("active_admin.search_status.current_scope"), style: "display: inline"
             b active.scope, style: "display: inline"
 
             div style: "margin-top: 10px" do
-              h4 I18n.t("active_admin.search_status.current_filters"), style: 'margin-bottom: 10px'
+              h4 I18n.t("active_admin.search_status.current_filters"), style: "margin-bottom: 10px"
               ul do
                 if active.filters.blank?
                   li I18n.t("active_admin.search_status.no_current_filters")

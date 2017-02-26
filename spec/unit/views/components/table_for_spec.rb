@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::Views::TableFor do
   describe "creating with the dsl" do
@@ -49,8 +49,8 @@ RSpec.describe ActiveAdmin::Views::TableFor do
       end
 
       it "should add a class to each table header based on the col name" do
-        expect(table.find_by_tag("th").first.class_list.to_a.join(' ')).to eq "col col-title"
-        expect(table.find_by_tag("th").last.class_list.to_a.join(' ')).to eq "col col-created_at"
+        expect(table.find_by_tag("th").first.class_list.to_a.join(" ")).to eq "col col-title"
+        expect(table.find_by_tag("th").last.class_list.to_a.join(" ")).to eq "col col-created_at"
       end
 
       it "should create a table row for each element in the collection" do
@@ -62,8 +62,8 @@ RSpec.describe ActiveAdmin::Views::TableFor do
       end
 
       it "should add a class for each cell based on the col name" do
-        expect(table.find_by_tag("td").first.class_list.to_a.join(' ')).to eq "col col-title"
-        expect(table.find_by_tag("td").last.class_list.to_a.join(' ')).to eq "col col-created_at"
+        expect(table.find_by_tag("td").first.class_list.to_a.join(" ")).to eq "col col-title"
+        expect(table.find_by_tag("td").last.class_list.to_a.join(" ")).to eq "col col-created_at"
       end
     end
 
@@ -82,8 +82,8 @@ RSpec.describe ActiveAdmin::Views::TableFor do
       end
 
       it "should add a class to each table header based on the col name" do
-        expect(table.find_by_tag("th").first.class_list.to_a.join(' ')).to eq "col col-title"
-        expect(table.find_by_tag("th").last.class_list.to_a.join(' ')).to eq "col col-created_at"
+        expect(table.find_by_tag("th").first.class_list.to_a.join(" ")).to eq "col col-title"
+        expect(table.find_by_tag("th").last.class_list.to_a.join(" ")).to eq "col col-created_at"
       end
 
       it "should create a table row for each element in the collection" do
@@ -95,8 +95,8 @@ RSpec.describe ActiveAdmin::Views::TableFor do
       end
 
       it "should add a class for each cell based on the col name" do
-        expect(table.find_by_tag("td").first.class_list.to_a.join(' ')).to eq "col col-title"
-        expect(table.find_by_tag("td").last.class_list.to_a.join(' ')).to eq "col col-created_at"
+        expect(table.find_by_tag("td").first.class_list.to_a.join(" ")).to eq "col col-title"
+        expect(table.find_by_tag("td").last.class_list.to_a.join(" ")).to eq "col col-created_at"
       end
     end
 
@@ -140,8 +140,8 @@ RSpec.describe ActiveAdmin::Views::TableFor do
       end
 
       it "should add a class to each table header based on the col name" do
-        expect(table.find_by_tag("th").first.class_list.to_a.join(' ')).to eq "col col-title"
-        expect(table.find_by_tag("th").last.class_list.to_a.join(' ')).to eq "col col-created_at"
+        expect(table.find_by_tag("th").first.class_list.to_a.join(" ")).to eq "col col-title"
+        expect(table.find_by_tag("th").last.class_list.to_a.join(" ")).to eq "col col-created_at"
       end
 
       it "should create a table row for each element in the collection" do
@@ -153,8 +153,8 @@ RSpec.describe ActiveAdmin::Views::TableFor do
       end
 
       it "should add a class for each cell based on the col name" do
-        expect(table.find_by_tag("td").first.class_list.to_a.join(' ')).to eq "col col-title"
-        expect(table.find_by_tag("td").last.class_list.to_a.join(' ')).to eq "col col-created_at"
+        expect(table.find_by_tag("td").first.class_list.to_a.join(" ")).to eq "col col-title"
+        expect(table.find_by_tag("td").last.class_list.to_a.join(" ")).to eq "col col-created_at"
       end
     end
 
@@ -213,13 +213,13 @@ RSpec.describe ActiveAdmin::Views::TableFor do
       end
 
       it "should add a class to each header based on class option or the col name" do
-        expect(table.find_by_tag("th").first.class_list.to_a.join(' ')).to eq "col col-my_custom_title"
-        expect(table.find_by_tag("th").last.class_list.to_a.join(' ')).to eq "col datetime"
+        expect(table.find_by_tag("th").first.class_list.to_a.join(" ")).to eq "col col-my_custom_title"
+        expect(table.find_by_tag("th").last.class_list.to_a.join(" ")).to eq "col datetime"
       end
 
       it "should add a class to each cell based on class option or the col name" do
-        expect(table.find_by_tag("td").first.class_list.to_a.join(' ')).to eq "col col-my_custom_title"
-        expect(table.find_by_tag("td").last.class_list.to_a.join(' ')).to eq "col datetime"
+        expect(table.find_by_tag("td").first.class_list.to_a.join(" ")).to eq "col col-my_custom_title"
+        expect(table.find_by_tag("td").last.class_list.to_a.join(" ")).to eq "col datetime"
       end
     end
 
@@ -281,29 +281,29 @@ RSpec.describe ActiveAdmin::Views::TableFor do
       end
 
       it "should render boolean attribute within status tag" do
-        expect(table.find_by_tag("span").first.class_list.to_a.join(' ')).to eq "status_tag yes"
+        expect(table.find_by_tag("span").first.class_list.to_a.join(" ")).to eq "status_tag yes"
         expect(table.find_by_tag("span").first.content).to eq "Yes"
-        expect(table.find_by_tag("span").last.class_list.to_a.join(' ')).to eq "status_tag no"
+        expect(table.find_by_tag("span").last.class_list.to_a.join(" ")).to eq "status_tag no"
         expect(table.find_by_tag("span").last.content).to eq "No"
       end
     end
 
-    context 'when row_class' do
+    context "when row_class" do
       let(:table) do
         render_arbre_component assigns, helpers do
-          table_for(collection, row_class: -> e { 'starred' if e.starred }) do
+          table_for(collection, row_class: -> e { "starred" if e.starred }) do
             column :starred
           end
         end
       end
 
-      it 'should render boolean attribute within status tag' do
-        trs = table.find_by_tag('tr')
+      it "should render boolean attribute within status tag" do
+        trs = table.find_by_tag("tr")
         expect(trs.size).to eq 4
-        expect(trs.first.class_list.to_a.join(' ')).to eq ''
-        expect(trs.second.class_list.to_a.join(' ')).to eq 'odd starred'
-        expect(trs.third.class_list.to_a.join(' ')).to eq 'even'
-        expect(trs.fourth.class_list.to_a.join(' ')).to eq 'odd'
+        expect(trs.first.class_list.to_a.join(" ")).to eq ""
+        expect(trs.second.class_list.to_a.join(" ")).to eq "odd starred"
+        expect(trs.third.class_list.to_a.join(" ")).to eq "even"
+        expect(trs.fourth.class_list.to_a.join(" ")).to eq "odd"
       end
     end
 
@@ -367,7 +367,7 @@ RSpec.describe ActiveAdmin::Views::TableFor do
       let(:table_column){ build_column(:username) }
       it { is_expected.to be_sortable }
 
-      describe '#sort_key' do
+      describe "#sort_key" do
         subject { super().sort_key }
         it{ is_expected.to eq("username") }
       end
@@ -382,34 +382,34 @@ RSpec.describe ActiveAdmin::Views::TableFor do
       let(:table_column){ build_column("Username", sortable: :username){ } }
       it { is_expected.to be_sortable }
 
-      describe '#sort_key' do
+      describe "#sort_key" do
         subject { super().sort_key }
         it{ is_expected.to eq("username") }
       end
     end
 
-    context 'when a block given with virtual attribute and no sort key' do
+    context "when a block given with virtual attribute and no sort key" do
       let(:table_column) { build_column(:virtual, nil, Post) { } }
       it { is_expected.not_to be_sortable }
     end
 
-    context 'when symbol given as a data column should be sortable' do
-      let(:table_column){ build_column('Username column', :username) }
+    context "when symbol given as a data column should be sortable" do
+      let(:table_column){ build_column("Username column", :username) }
       it { is_expected.to be_sortable }
 
-      describe '#sort_key' do
+      describe "#sort_key" do
         subject { super().sort_key }
-        it { is_expected.to eq 'username' }
+        it { is_expected.to eq "username" }
       end
     end
 
-    context 'when sortable: true with a symbol and string' do
-      let(:table_column){ build_column('Username column', :username, sortable: true) }
+    context "when sortable: true with a symbol and string" do
+      let(:table_column){ build_column("Username column", :username, sortable: true) }
       it { is_expected.to be_sortable }
 
-      describe '#sort_key' do
+      describe "#sort_key" do
         subject { super().sort_key }
-        it { is_expected.to eq 'username' }
+        it { is_expected.to eq "username" }
       end
     end
 
@@ -428,8 +428,8 @@ RSpec.describe ActiveAdmin::Views::TableFor do
       it { is_expected.not_to be_sortable }
     end
 
-    context 'when :sortable column is an association and block given' do
-      let(:table_column){ build_column('Category', :category, Post) { } }
+    context "when :sortable column is an association and block given" do
+      let(:table_column){ build_column("Category", :category, Post) { } }
       it { is_expected.not_to be_sortable }
     end
   end

@@ -4,31 +4,31 @@
 # instead of editing this one. Cucumber will automatically load all features/**/*.rb
 # files.
 
-ENV['RAILS_ENV'] = 'test'
+ENV["RAILS_ENV"] = "test"
 
-require File.expand_path('../../../spec/spec_helper', __FILE__)
+require File.expand_path("../../../spec/spec_helper", __FILE__)
 
-require 'rails'
-ENV['RAILS_ROOT'] = File.expand_path("../../../spec/rails/rails-#{Rails.version}", __FILE__)
+require "rails"
+ENV["RAILS_ROOT"] = File.expand_path("../../../spec/rails/rails-#{Rails.version}", __FILE__)
 
 # Create the test app if it doesn't exists
-unless File.exists?(ENV['RAILS_ROOT'])
-  system 'rake setup'
+unless File.exists?(ENV["RAILS_ROOT"])
+  system "rake setup"
 end
 
-require 'active_record'
-require 'active_admin'
-require 'devise'
-ActiveAdmin.application.load_paths = [ENV['RAILS_ROOT'] + "/app/admin"]
+require "active_record"
+require "active_admin"
+require "devise"
+ActiveAdmin.application.load_paths = [ENV["RAILS_ROOT"] + "/app/admin"]
 
-require ENV['RAILS_ROOT'] + '/config/environment'
+require ENV["RAILS_ROOT"] + "/config/environment"
 
 # Setup autoloading of ActiveAdmin
-autoload :ActiveAdmin, 'active_admin'
+autoload :ActiveAdmin, "active_admin"
 
-require 'cucumber/rails'
+require "cucumber/rails"
 
-require 'rspec/mocks'
+require "rspec/mocks"
 World(RSpec::Mocks::ExampleMethods)
 
 Before do
@@ -43,11 +43,11 @@ After do
   end
 end
 
-require 'capybara/rails'
-require 'capybara/cucumber'
-require 'capybara/session'
-require 'capybara/poltergeist'
-require 'phantomjs/poltergeist'
+require "capybara/rails"
+require "capybara/cucumber"
+require "capybara/session"
+require "capybara/poltergeist"
+require "phantomjs/poltergeist"
 
 Capybara.javascript_driver = :poltergeist
 
@@ -116,18 +116,18 @@ end
 Rails.logger.level = 4
 
 # Improves performance by forcing the garbage collector to run less often.
-unless ENV['DEFER_GC'] == '0' || ENV['DEFER_GC'] == 'false'
-  require File.expand_path('../../../spec/support/deferred_garbage_collection', __FILE__)
+unless ENV["DEFER_GC"] == "0" || ENV["DEFER_GC"] == "false"
+  require File.expand_path("../../../spec/support/deferred_garbage_collection", __FILE__)
   Before { DeferredGarbageCollection.start }
   After  { DeferredGarbageCollection.reconsider }
 end
 
 # Don't run @rails4 tagged features for versions before Rails 4.
-Before('@rails4') do |scenario|
+Before("@rails4") do |scenario|
   scenario.skip_invoke! if Rails::VERSION::MAJOR < 4
 end
 
-Around '@silent_unpermitted_params_failure' do |scenario, block|
+Around "@silent_unpermitted_params_failure" do |scenario, block|
   original = ActionController::Parameters.action_on_unpermitted_parameters
   ActionController::Parameters.action_on_unpermitted_parameters = false
   block.call

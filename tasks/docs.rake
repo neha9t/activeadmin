@@ -10,12 +10,12 @@ namespace :docs do
 EOD
 
   def filename_from_module(mod)
-    mod.name.to_s.underscore.tr('_', '-')
+    mod.name.to_s.underscore.tr("_", "-")
   end
 
   def write_docstrings_to(path, mods)
     mods.each do |mod|
-      File.open("#{path}/#{filename_from_module(mod)}.md", 'w+') do |f|
+      File.open("#{path}/#{filename_from_module(mod)}.md", "w+") do |f|
         f << AUTOGEN_WARNING + mod.docstring + "\n"
       end
     end
@@ -23,8 +23,8 @@ EOD
 
   desc "Update docs in the docs folder"
   task :build do
-    require 'yard'
-    require 'active_support/all'
+    require "yard"
+    require "active_support/all"
 
     YARD::Registry.load!
     views = YARD::Registry.at("ActiveAdmin::Views")

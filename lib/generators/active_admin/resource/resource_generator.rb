@@ -1,4 +1,4 @@
-require 'active_admin/generators/boilerplate'
+require "active_admin/generators/boilerplate"
 
 module ActiveAdmin
   module Generators

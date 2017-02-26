@@ -1,7 +1,7 @@
 # encoding: utf-8
 
-require 'rails_helper'
-require File.expand_path('config_shared_examples', File.dirname(__FILE__))
+require "rails_helper"
+require File.expand_path("config_shared_examples", File.dirname(__FILE__))
 
 module ActiveAdmin
   RSpec.describe Page do
@@ -35,7 +35,7 @@ module ActiveAdmin
       end
 
       it "returns the singular, lowercase name" do
-        if RUBY_VERSION >= '2.4.0'
+        if RUBY_VERSION >= "2.4.0"
           expect(config.resource_name.singular).to eq "chocolate i løve you!"
         else
           expect(config.resource_name.singular).to eq "chocolate i lØve you!"

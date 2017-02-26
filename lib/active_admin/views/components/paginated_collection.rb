@@ -1,5 +1,5 @@
-require 'active_admin/helpers/collection'
-require 'active_admin/view_helpers/download_format_links_helper'
+require "active_admin/helpers/collection"
+require "active_admin/view_helpers/download_format_links_helper"
 
 module ActiveAdmin
   module Views
@@ -124,11 +124,11 @@ module ActiveAdmin
           entry_name   = options[:entry_name]
           entries_name = options[:entries_name] || entry_name.pluralize
         elsif collection_is_empty?
-          entry_name   = I18n.t "active_admin.pagination.entry", count: 1, default: 'entry'
-          entries_name = I18n.t "active_admin.pagination.entry", count: 2, default: 'entries'
+          entry_name   = I18n.t "active_admin.pagination.entry", count: 1, default: "entry"
+          entries_name = I18n.t "active_admin.pagination.entry", count: 2, default: "entries"
         else
           key = "activerecord.models." + collection.first.class.model_name.i18n_key.to_s
-          entry_name   = I18n.translate key, count: 1,               default: collection.first.class.name.underscore.sub('_', ' ')
+          entry_name   = I18n.translate key, count: 1,               default: collection.first.class.name.underscore.sub("_", " ")
           entries_name = I18n.translate key, count: collection.size, default: entry_name.pluralize
         end
 

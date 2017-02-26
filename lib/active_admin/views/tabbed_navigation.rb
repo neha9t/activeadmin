@@ -28,7 +28,7 @@ module ActiveAdmin
       end
 
       def tag_name
-        'ul'
+        "ul"
       end
 
       private

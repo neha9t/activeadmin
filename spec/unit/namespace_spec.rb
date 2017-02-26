@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::Namespace do
 
@@ -37,7 +37,7 @@ RSpec.describe ActiveAdmin::Namespace do
         ActiveAdmin.application.namespaces.instance_variable_get(:@namespaces).delete(:root)
 
         # To force Admin::PostsController to not be there
-        Admin.send(:remove_const, 'PostsController')
+        Admin.send(:remove_const, "PostsController")
       end
 
       it "should not crash" do

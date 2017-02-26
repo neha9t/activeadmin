@@ -38,7 +38,7 @@ module ActiveAdmin
               { "#{k}[]" => v }
             end
           when nil
-            { k => '' }
+            { k => "" }
           when TrueClass,FalseClass
             { k => v }
           else

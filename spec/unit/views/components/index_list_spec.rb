@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::Views::IndexList do
 
@@ -7,7 +7,7 @@ RSpec.describe ActiveAdmin::Views::IndexList do
     let(:index_classes) { [ActiveAdmin::Views::IndexAsTable, ActiveAdmin::Views::IndexAsBlock] }
 
     let(:collection) {
-      Post.create(title: 'First Post', starred: true)
+      Post.create(title: "First Post", starred: true)
       Post.where(nil)
     }
 
@@ -26,9 +26,9 @@ RSpec.describe ActiveAdmin::Views::IndexList do
       end
     end
 
-    describe '#tag_name' do
+    describe "#tag_name" do
       subject { super().tag_name }
-      it { is_expected.to eq 'ul'}
+      it { is_expected.to eq "ul"}
     end
 
     it "should contain the names of available indexes in links" do

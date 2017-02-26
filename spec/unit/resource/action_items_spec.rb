@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::Resource::ActionItems do
 
@@ -56,7 +56,7 @@ RSpec.describe ActiveAdmin::Resource::ActionItems do
       expect(resource.action_items.size).to eq 3
     end
 
-    it 'can be removed by name' do
+    it "can be removed by name" do
       resource.remove_action_item :new
       expect(resource.action_items.size).to eq 2
     end

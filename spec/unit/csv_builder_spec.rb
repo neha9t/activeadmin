@@ -1,18 +1,18 @@
 # Encoding: UTF-8
 
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::CSVBuilder do
 
-  describe '.default_for_resource using Post' do
+  describe ".default_for_resource using Post" do
     let(:csv_builder) { ActiveAdmin::CSVBuilder.default_for_resource(Post).tap(&:exec_columns) }
 
-    it 'returns a default csv_builder for Post' do
+    it "returns a default csv_builder for Post" do
       expect(csv_builder).to be_a(ActiveAdmin::CSVBuilder)
     end
 
-    it 'defines Id as the first column' do
-      expect(csv_builder.columns.first.name).to eq 'Id'
+    it "defines Id as the first column" do
+      expect(csv_builder.columns.first.name).to eq "Id"
       expect(csv_builder.columns.first.data).to eq :id
     end
 
@@ -23,22 +23,22 @@ RSpec.describe ActiveAdmin::CSVBuilder do
       end
     end
 
-    context 'when column has a localized name' do
-      let(:localized_name) { 'Titulo' }
+    context "when column has a localized name" do
+      let(:localized_name) { "Titulo" }
 
       before do
         allow(Post).to receive(:human_attribute_name).and_call_original
         allow(Post).to receive(:human_attribute_name).with(:title){ localized_name }
       end
 
-      it 'gets name from I18n' do
-        title_index = Post.content_columns.map(&:name).index('title') + 1 # First col is always id
+      it "gets name from I18n" do
+        title_index = Post.content_columns.map(&:name).index("title") + 1 # First col is always id
         expect(csv_builder.columns[title_index].name).to eq localized_name
       end
     end
   end
 
-  context 'when empty' do
+  context "when empty" do
     let(:builder){ ActiveAdmin::CSVBuilder.new.tap(&:exec_columns) }
 
     it "should have no columns" do
@@ -199,7 +199,7 @@ RSpec.describe ActiveAdmin::CSVBuilder do
         end
 
         def collection
-          Post.order('published_date DESC')
+          Post.order("published_date DESC")
         end
 
         def apply_decorator(resource)
@@ -292,12 +292,12 @@ RSpec.describe ActiveAdmin::CSVBuilder do
     end
   end
 
-  skip '#exec_columns'
+  skip "#exec_columns"
 
-  skip '#build_row' do
-    it 'renders non-strings'
-    it 'encodes values correctly'
-    it 'passes custom encoding options to String#encode!'
+  skip "#build_row" do
+    it "renders non-strings"
+    it "encodes values correctly"
+    it "passes custom encoding options to String#encode!"
   end
 
 end

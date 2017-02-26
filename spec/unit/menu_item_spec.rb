@@ -1,6 +1,6 @@
-require 'spec_helper'
-require 'active_admin/menu'
-require 'active_admin/menu_item'
+require "spec_helper"
+require "active_admin/menu"
+require "active_admin/menu_item"
 
 module ActiveAdmin
   RSpec.describe MenuItem do
@@ -76,15 +76,15 @@ module ActiveAdmin
       end
 
       it "should give access to the menu item as an array" do
-        expect(item['Blog'].label).to eq 'Blog'
+        expect(item["Blog"].label).to eq "Blog"
       end
 
       it "should sort items based on priority and name" do
-        expect(item.items[0].label).to eq 'Users'
-        expect(item.items[1].label).to eq 'Settings'
-        expect(item.items[2].label).to eq 'Blog'
-        expect(item.items[3].label).to eq 'Cars'
-        expect(item.items[4].label).to eq 'Analytics'
+        expect(item.items[0].label).to eq "Users"
+        expect(item.items[1].label).to eq "Settings"
+        expect(item.items[2].label).to eq "Blog"
+        expect(item.items[3].label).to eq "Cars"
+        expect(item.items[4].label).to eq "Analytics"
       end
 
       it "children should hold a reference to their parent" do

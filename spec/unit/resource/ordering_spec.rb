@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 module ActiveAdmin
   RSpec.describe Resource, "Ordering" do
@@ -12,8 +12,8 @@ module ActiveAdmin
       it "should register the ordering in the config" do
         dsl.run_registration_block do
           order_by(:age) do |order_clause|
-            if order_clause.order == 'desc'
-              [order_clause.to_sql, 'NULLS LAST'].join(' ')
+            if order_clause.order == "desc"
+              [order_clause.to_sql, "NULLS LAST"].join(" ")
             end
           end
         end

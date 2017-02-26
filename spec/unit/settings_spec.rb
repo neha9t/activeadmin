@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::Settings do
 
@@ -10,8 +10,8 @@ RSpec.describe ActiveAdmin::Settings do
 
   describe "class API" do
     it "should create settings" do
-      subject.setting :foo, 'bar'
-      expect(subject.default_settings[:foo]).to eq 'bar'
+      subject.setting :foo, "bar"
+      expect(subject.default_settings[:foo]).to eq "bar"
     end
 
     it "should create deprecated settings" do
@@ -24,15 +24,15 @@ RSpec.describe ActiveAdmin::Settings do
   describe "instance API" do
 
     before do
-      subject.setting :foo, 'bar'
+      subject.setting :foo, "bar"
       subject.deprecated_setting :baz, 32
     end
     let(:instance) { subject.new }
 
     it "should have access to a default value" do
-      expect(instance.foo).to eq 'bar'
-      instance.foo = 'qqq'
-      expect(instance.foo).to eq 'qqq'
+      expect(instance.foo).to eq "bar"
+      instance.foo = "qqq"
+      expect(instance.foo).to eq "qqq"
     end
 
     it "should have access to a deprecated value" do

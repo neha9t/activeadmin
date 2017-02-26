@@ -1,6 +1,6 @@
 # -*- coding: UTF-8 -*-
 
-require 'rails_helper'
+require "rails_helper"
 
 module ActiveAdmin
   RSpec.describe Resource, "Naming" do
@@ -86,7 +86,7 @@ module ActiveAdmin
         context "when the :as option is given" do
           describe "singular label" do
             it "should translate the custom name" do
-              config = config(as: 'My Category')
+              config = config(as: "My Category")
               expect(config.resource_name).to receive(:translate).and_return "Translated category"
               expect(config.resource_label).to eq "Translated category"
             end
@@ -94,7 +94,7 @@ module ActiveAdmin
 
           describe "plural label" do
             it "should translate the custom name" do
-              config = config(as: 'My Category')
+              config = config(as: "My Category")
               expect(config.resource_name).to receive(:translate).at_least(:once).and_return "Translated categories"
               expect(config.plural_resource_label).to eq "Translated categories"
             end

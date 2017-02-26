@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe ActiveAdmin::ResourceController::DataAccess do
   before do
@@ -69,7 +69,7 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
         expect(controller.send(:active_admin_config)).to receive(:ordering).twice.and_return(
           {
             published_date: proc do |order_clause|
-              [order_clause.to_sql, 'NULLS LAST'].join(' ') if order_clause.order == 'desc'
+              [order_clause.to_sql, "NULLS LAST"].join(" ") if order_clause.order == "desc"
             end
           }.with_indifferent_access
         )

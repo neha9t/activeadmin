@@ -1,34 +1,34 @@
 begin
-  require 'bundler/inline'
+  require "bundler/inline"
 rescue LoadError => e
-  STDERR.puts 'Bundler version 1.10 or later is required. Please update your Bundler'
+  STDERR.puts "Bundler version 1.10 or later is required. Please update your Bundler"
   raise e
 end
 
 gemfile(true) do
-  source 'https://rubygems.org'
+  source "https://rubygems.org"
 
-  gem 'rails', require: false
-  gem 'sqlite3', platform: :mri
+  gem "rails", require: false
+  gem "sqlite3", platform: :mri
 
-  gem 'activerecord-jdbcsqlite3-adapter',
-      git: 'https://github.com/jruby/activerecord-jdbc-adapter',
-      branch: 'rails-5',
+  gem "activerecord-jdbcsqlite3-adapter",
+      git: "https://github.com/jruby/activerecord-jdbc-adapter",
+      branch: "rails-5",
       platform: :jruby
 
-  if ENV['ACTIVE_ADMIN_PATH']
-    gem 'activeadmin', path: ENV['ACTIVE_ADMIN_PATH'], require: false
+  if ENV["ACTIVE_ADMIN_PATH"]
+    gem "activeadmin", path: ENV["ACTIVE_ADMIN_PATH"], require: false
   else
-    gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin', require: false
+    gem "activeadmin", git: "https://github.com/activeadmin/activeadmin", require: false
   end
 
-  gem 'inherited_resources', '~> 1.7', require: false
+  gem "inherited_resources", "~> 1.7", require: false
 end
 
 # prepare active_record database
-require 'active_record'
+require "active_record"
 
-ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: ':memory:')
+ActiveRecord::Base.establish_connection(adapter: "sqlite3", database: ":memory:")
 ActiveRecord::Base.logger = Logger.new(STDOUT)
 
 ActiveRecord::Schema.define do
@@ -42,9 +42,9 @@ ActiveRecord::Schema.define do
 end
 
 # prepare rails app
-require 'action_controller/railtie'
-require 'action_view/railtie'
-require 'active_admin'
+require "action_controller/railtie"
+require "action_view/railtie"
+require "active_admin"
 
 class ApplicationController < ActionController::Base
 end
@@ -53,8 +53,8 @@ class TestApp < Rails::Application
   config.root = File.dirname(__FILE__)
   config.logger = Logger.new(STDOUT)
 
-  secrets.secret_token = 'secret_token'
-  secrets.secret_key_base = 'secret_key_base'
+  secrets.secret_token = "secret_token"
+  secrets.secret_key_base = "secret_key_base"
 
   config.eager_load = false
 end
@@ -74,11 +74,11 @@ end
 Rails.application.initialize!
 
 # register pages and resources
-ActiveAdmin.register_page 'Dashboard' do
-  menu priority: 1, label: proc { I18n.t('active_admin.dashboard') }
+ActiveAdmin.register_page "Dashboard" do
+  menu priority: 1, label: proc { I18n.t("active_admin.dashboard") }
 
   content do
-    'Test Me'
+    "Test Me"
   end
 end
 
@@ -91,25 +91,25 @@ Rails.application.routes.draw do
 end
 
 # prepare tests
-require 'minitest/autorun'
-require 'rack/test'
+require "minitest/autorun"
+require "rack/test"
 
 # Replace this with the code necessary to make your test fail.
 class BugTest < Minitest::Test
   include Rack::Test::Methods
 
   def test_admin_root_success?
-    get '/admin'
+    get "/admin"
     assert last_response.ok?
-    assert_match 'Test Me', last_response.body # has content
-    assert_match 'Your Models', last_response.body # has 'Your Models' in menu
+    assert_match "Test Me", last_response.body # has content
+    assert_match "Your Models", last_response.body # has 'Your Models' in menu
   end
 
   def test_admin_your_models
-    YourModel.create! name: 'John Doe'
-    get '/admin/your_models'
+    YourModel.create! name: "John Doe"
+    get "/admin/your_models"
     assert last_response.ok?
-    assert_match 'John Doe', last_response.body # has created row
+    assert_match "John Doe", last_response.body # has created row
   end
 
   private

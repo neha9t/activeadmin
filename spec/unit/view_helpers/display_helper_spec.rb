@@ -1,8 +1,8 @@
-require 'rails_helper'
-require 'active_admin/view_helpers/active_admin_application_helper'
-require 'active_admin/view_helpers/auto_link_helper'
-require 'active_admin/view_helpers/display_helper'
-require 'active_admin/view_helpers/method_or_proc_helper'
+require "rails_helper"
+require "active_admin/view_helpers/active_admin_application_helper"
+require "active_admin/view_helpers/auto_link_helper"
+require "active_admin/view_helpers/display_helper"
+require "active_admin/view_helpers/method_or_proc_helper"
 
 RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
   include ActiveAdmin::ViewHelpers::ActiveAdminApplicationHelper
@@ -31,7 +31,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
     end
   end
 
-  describe '#display_name' do
+  describe "#display_name" do
     ActiveAdmin::Application.new.display_name_methods.map(&:to_s).each do |m|
       it "should return #{m} when defined" do
         klass = Class.new do
@@ -57,9 +57,9 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
       allow(klass).to receive(:reflect_on_all_associations).and_return [ double(name: :login) ]
       allow(subject).to receive :login
       expect(subject).to_not receive :login
-      allow(subject).to receive(:email).and_return 'foo@bar.baz'
+      allow(subject).to receive(:email).and_return "foo@bar.baz"
 
-      expect(display_name subject).to eq 'foo@bar.baz'
+      expect(display_name subject).to eq "foo@bar.baz"
     end
 
     it "should return `nil` when the passed object is `nil`" do
@@ -100,23 +100,23 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
     end
   end
 
-  describe '#format_attribute' do
-    it 'calls the provided block to format the value' do
+  describe "#format_attribute" do
+    it "calls the provided block to format the value" do
       value = format_attribute double(foo: 2), ->r { r.foo + 1 }
 
-      expect(value).to eq '3'
+      expect(value).to eq "3"
     end
 
-    it 'finds values as methods' do
-      value = format_attribute double(name: 'Joe'), :name
+    it "finds values as methods" do
+      value = format_attribute double(name: "Joe"), :name
 
-      expect(value).to eq 'Joe'
+      expect(value).to eq "Joe"
     end
 
-    it 'finds values from hashes' do
+    it "finds values from hashes" do
       value = format_attribute({id: 100}, :id)
 
-      expect(value).to eq '100'
+      expect(value).to eq "100"
     end
 
     [1, 1.2, :a_symbol].each do |val|
@@ -127,23 +127,23 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
       end
     end
 
-    it 'localizes dates' do
-      date = Date.parse '2016/02/28'
+    it "localizes dates" do
+      date = Date.parse "2016/02/28"
 
       value = format_attribute double(date: date), :date
 
-      expect(value).to eq 'February 28, 2016'
+      expect(value).to eq "February 28, 2016"
     end
 
-    it 'localizes times' do
-      time = Time.parse '2016/02/28 9:34 PM'
+    it "localizes times" do
+      time = Time.parse "2016/02/28 9:34 PM"
 
       value = format_attribute double(time: time), :time
 
-      expect(value).to eq 'February 28, 2016 21:34'
+      expect(value).to eq "February 28, 2016 21:34"
     end
 
-    it 'uses a display_name method for arbitrary objects' do
+    it "uses a display_name method for arbitrary objects" do
       object = double to_s: :wrong, display_name: :right
 
       value = format_attribute double(object: object), :object
@@ -151,7 +151,7 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
       expect(value).to eq :right
     end
 
-    it 'auto-links ActiveRecord records from foreign keys' do
+    it "auto-links ActiveRecord records from foreign keys" do
       post = Post.create! author: User.new
 
       value = format_attribute post, :author_id
@@ -159,17 +159,17 @@ RSpec.describe ActiveAdmin::ViewHelpers::DisplayHelper do
       expect(value).to match /<a href="\/admin\/users\/\d+"> <\/a>/
     end
 
-    it 'auto-links ActiveRecord records & uses a display_name method' do
-      post = Post.create! author: User.new(first_name: 'A', last_name: 'B')
+    it "auto-links ActiveRecord records & uses a display_name method" do
+      post = Post.create! author: User.new(first_name: "A", last_name: "B")
 
       value = format_attribute post, :author
 
       expect(value).to match /<a href="\/admin\/users\/\d+">A B<\/a>/
     end
 
-    pending 'auto-links Mongoid records'
+    pending "auto-links Mongoid records"
 
-    it 'calls status_tag for boolean values' do
+    it "calls status_tag for boolean values" do
       post = Post.new starred: true
 
       value = format_attribute post, :starred
