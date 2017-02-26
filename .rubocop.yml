@@ -21,3 +21,6 @@ Style/TrailingWhitespace:
 Style/StringLiterals:
   Enabled: true
   EnforcedStyle: double_quotes
+
+Style/SpaceAfterComma:
+  Enabled: true
