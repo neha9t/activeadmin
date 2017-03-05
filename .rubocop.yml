@@ -24,3 +24,7 @@ Style/StringLiterals:
 
 Style/SpaceAfterComma:
   Enabled: true
+
+Style/DotPosition:
+  Enabled: true
+  EnforcedStyle: leading

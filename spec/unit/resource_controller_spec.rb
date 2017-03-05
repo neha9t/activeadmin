@@ -123,8 +123,8 @@ RSpec.describe "A specific resource controller", type: :controller do
     it "should call the authentication_method when set" do
       namespace = controller.class.active_admin_config.namespace
 
-      expect(namespace).to receive(:authentication_method).twice.
-        and_return(:authenticate_admin_user!)
+      expect(namespace).to receive(:authentication_method).twice
+        .and_return(:authenticate_admin_user!)
 
       expect(controller).to receive(:authenticate_admin_user!).and_return(true)
 
@@ -145,8 +145,8 @@ RSpec.describe "A specific resource controller", type: :controller do
       user = double
       namespace = controller.class.active_admin_config.namespace
 
-      expect(namespace).to receive(:current_user_method).twice.
-        and_return(:current_admin_user)
+      expect(namespace).to receive(:current_user_method).twice
+        .and_return(:current_admin_user)
 
       expect(controller).to receive(:current_admin_user).and_return(user)
 

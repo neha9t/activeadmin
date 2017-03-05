@@ -263,11 +263,11 @@ module ActiveAdmin
         before do
           allow(Post).to receive(:primary_key).and_return "something_else"
           if Rails::VERSION::MAJOR >= 4
-            allow(Post).to receive(:find_by).
-              with("something_else" => "55555") { different_post }
+            allow(Post).to receive(:find_by)
+              .with("something_else" => "55555") { different_post }
           else
-            allow(Post).to receive(:find_by_something_else).
-              with("55555") { different_post }
+            allow(Post).to receive(:find_by_something_else)
+              .with("55555") { different_post }
           end
         end
 

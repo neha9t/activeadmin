@@ -154,8 +154,8 @@ RSpec.describe "Comments" do
           body: "Lorem Ipsum",
           namespace: namespace_name)
 
-        expect(ActiveAdmin::Comment.find_for_resource_in_namespace(publisher, namespace_name).last.resource_type).
-          to eq("User")
+        expect(ActiveAdmin::Comment.find_for_resource_in_namespace(publisher, namespace_name).last.resource_type)
+          .to eq("User")
       end
     end
   end

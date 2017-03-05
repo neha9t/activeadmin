@@ -226,9 +226,9 @@ RSpec.describe ActiveAdmin::CSVBuilder do
     end
 
     it "should generate data ignoring pagination" do
-      expect(dummy_controller).to receive(:find_collection).
-        with(except: :pagination).once.
-        and_call_original
+      expect(dummy_controller).to receive(:find_collection)
+        .with(except: :pagination).once
+        .and_call_original
       expect(builder).to receive(:build_row).and_return([]).twice
       builder.build dummy_controller, []
     end

@@ -5,18 +5,18 @@ RSpec.describe ActiveAdmin::ViewHelpers::FormHelper, ".fields_for" do
 
   it "should skip :action, :controller and :commit" do
     expect(fields_for_params(
-      scope: "All", action: "index", controller: "PostController", commit: "Filter", utf8: "Yes!")).
-      to eq [ { scope: "All" } ]
+      scope: "All", action: "index", controller: "PostController", commit: "Filter", utf8: "Yes!"))
+      .to eq [ { scope: "All" } ]
   end
 
   it "should skip the except" do
-    expect(fields_for_params({scope: "All", name: "Greg"}, except: :name)).
-      to eq [ { scope: "All" } ]
+    expect(fields_for_params({scope: "All", name: "Greg"}, except: :name))
+      .to eq [ { scope: "All" } ]
   end
 
   it "should allow an array for the except" do
-    expect(fields_for_params({scope: "All", name: "Greg", age: "12"}, except: [:name, :age])).
-      to eq [ { scope: "All" } ]
+    expect(fields_for_params({scope: "All", name: "Greg", age: "12"}, except: [:name, :age]))
+      .to eq [ { scope: "All" } ]
   end
 
   it "should work with hashes" do
@@ -28,20 +28,20 @@ RSpec.describe ActiveAdmin::ViewHelpers::FormHelper, ".fields_for" do
   end
 
   it "should work with nested hashes" do
-    expect(fields_for_params(filters: { user: { name: "John" }})).
-      to eq [ { "filters[user][name]" => "John" } ]
+    expect(fields_for_params(filters: { user: { name: "John" }}))
+      .to eq [ { "filters[user][name]" => "John" } ]
   end
 
   it "should work with arrays" do
-    expect(fields_for_params(people: ["greg", "emily", "philippe"])).
-      to eq [ { "people[]" => "greg" },
+    expect(fields_for_params(people: ["greg", "emily", "philippe"]))
+      .to eq [ { "people[]" => "greg" },
                   { "people[]" => "emily" },
                   { "people[]" => "philippe" } ]
   end
 
   it "should work with symbols" do
-    expect(fields_for_params(filter: :id)).
-      to eq [ { filter: "id" } ]
+    expect(fields_for_params(filter: :id))
+      .to eq [ { filter: "id" } ]
   end
 
   it "should work with booleans" do

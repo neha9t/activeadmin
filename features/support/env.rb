@@ -83,8 +83,8 @@ After do
   Warden.test_reset!
 
   # Reset back to the default auth adapter
-  ActiveAdmin.application.namespace(:admin).
-    authorization_adapter = ActiveAdmin::AuthorizationAdapter
+  ActiveAdmin.application.namespace(:admin)
+    .authorization_adapter = ActiveAdmin::AuthorizationAdapter
 end
 
 Before do

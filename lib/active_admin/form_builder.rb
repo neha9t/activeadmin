@@ -30,8 +30,8 @@ module ActiveAdmin
     attr_accessor :already_in_an_inputs_block
 
     def assoc_heading(assoc)
-      object.class.reflect_on_association(assoc).klass.model_name.
-        human(count: ::ActiveAdmin::Helpers::I18n::PLURAL_MANY_COUNT)
+      object.class.reflect_on_association(assoc).klass.model_name
+        .human(count: ::ActiveAdmin::Helpers::I18n::PLURAL_MANY_COUNT)
     end
 
     def has_many(assoc, options = {}, &block)

@@ -189,8 +189,8 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
       end
 
       it "should display proper message (including number and not hash)" do
-        expect(pagination.find_by_class("pagination_information").first.content.gsub("&nbsp;", " ")).
-          to eq "Displaying posts <b>1 - 2</b> of <b>3</b> in total"
+        expect(pagination.find_by_class("pagination_information").first.content.gsub("&nbsp;", " "))
+          .to eq "Displaying posts <b>1 - 2</b> of <b>3</b> in total"
       end
     end
 
@@ -200,8 +200,8 @@ RSpec.describe ActiveAdmin::Views::PaginatedCollection do
       end
 
       it "should show the proper item counts" do
-        expect(pagination.find_by_class("pagination_information").first.content.gsub("&nbsp;", " ")).
-          to eq "Displaying posts <b>61 - 81</b> of <b>81</b> in total"
+        expect(pagination.find_by_class("pagination_information").first.content.gsub("&nbsp;", " "))
+          .to eq "Displaying posts <b>61 - 81</b> of <b>81</b> in total"
       end
     end
 

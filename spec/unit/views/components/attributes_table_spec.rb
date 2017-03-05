@@ -104,13 +104,13 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
           row :created_at
         end
       }
-      expect(table.find_by_tag("tr").first.to_s.
-        split("\n").first.lstrip).
-          to eq '<tr class="row row-title">'
+      expect(table.find_by_tag("tr").first.to_s
+        .split("\n").first.lstrip)
+          .to eq '<tr class="row row-title">'
 
-      expect(table.find_by_tag("tr").last.to_s.
-        split("\n").first.lstrip).
-          to eq '<tr class="row row-created_at">'
+      expect(table.find_by_tag("tr").last.to_s
+        .split("\n").first.lstrip)
+          .to eq '<tr class="row row-created_at">'
     end
 
     it "should allow html options for the row itself" do
@@ -119,8 +119,8 @@ RSpec.describe ActiveAdmin::Views::AttributesTable do
           row("Wee", class: "custom_row", style: "custom_style") { }
         end
       }
-      expect(table.find_by_tag("tr").first.to_s.split("\n").first.lstrip).
-        to eq '<tr class="row custom_row" style="custom_style">'
+      expect(table.find_by_tag("tr").first.to_s.split("\n").first.lstrip)
+        .to eq '<tr class="row custom_row" style="custom_style">'
     end
 
     it "should allow html content inside the attributes table" do

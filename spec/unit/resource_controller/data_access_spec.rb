@@ -146,19 +146,19 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
       double "ScopedCollectionChain"
     end
     before do
-      allow(controller).to receive(:scoped_collection).
-        and_return(scoped_collection)
+      allow(controller).to receive(:scoped_collection)
+        .and_return(scoped_collection)
     end
 
     it "should return chain with all appliers " do
       appliers.each do |applier|
-        expect(controller).to receive("apply_#{applier}").
-          with(scoped_collection).
-          once.
-          and_return(scoped_collection)
+        expect(controller).to receive("apply_#{applier}")
+          .with(scoped_collection)
+          .once
+          .and_return(scoped_collection)
       end
-      expect(controller).to receive(:collection_applies).
-        with({}).and_call_original.once
+      expect(controller).to receive(:collection_applies)
+        .with({}).and_call_original.once
       controller.send :find_collection
     end
 
@@ -171,8 +171,8 @@ RSpec.describe ActiveAdmin::ResourceController::DataAccess do
         end
 
         it "should except appliers" do
-          expect(controller.send :collection_applies, options).
-            to eq([:sorting, :includes, :pagination])
+          expect(controller.send :collection_applies, options)
+            .to eq([:sorting, :includes, :pagination])
         end
       end
 

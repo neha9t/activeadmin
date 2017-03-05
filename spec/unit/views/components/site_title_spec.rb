@@ -46,9 +46,9 @@ RSpec.describe ActiveAdmin::Views::SiteTitle do
   context "when an image" do
 
     it "renders the string when a string is passed in" do
-      expect(helpers).to receive(:image_tag).
-        with("an/image.png", alt: nil, id: "site_title_image").
-        and_return '<img src="/assets/an/image.png" />'.html_safe
+      expect(helpers).to receive(:image_tag)
+        .with("an/image.png", alt: nil, id: "site_title_image")
+        .and_return '<img src="/assets/an/image.png" />'.html_safe
 
       namespace = double site_title: nil,
                          site_title_image: "an/image.png",
